@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+console.log(foo)  // undefined
+var foo=10;
+//console.log(lee) // Uncaught ReferenceError: lee is not defined
+ 
+//let lee=10; 
+/*
+上面代码中，变量foo用var命令声明，会发生变量提升，即脚本开始运行时，变量
+foo已经存在了，但是没有值，所以输出undefined。变量lee用let命令声明，不会
+发生变量提升。这个表示在声明它之前，变量lee时不存在的，这是如果用到它，就
+会抛出一个错误。
+*/
+var  temp=123;
+if(true) {
+    let temp='abcd'
+    console.log(temp) // 输出abcd，不受全局变量影响，在es6里面叫暂时性死区
+}
+
+var tp = new Date();
+function f() {
+    console.log(tp);
+    if(false) {
+        var tp='hello world';
+    }
+}
+f(); // undefined 
+/*
+上面代码的愿意是，if代码块的外部使用外层的tp变量，内部使用内层的tp变量。
+但是，函数f执行后，输出结果为undefined，原因在于变量提升，导致内层的tp变量覆盖
+了外层的tp变量。
+*/
+
+var s ='hello';
+for(var i=0;i<s.length;i++) {
+    console.log(s[i]);
+}
+console.log(i);// 5
+</script>
